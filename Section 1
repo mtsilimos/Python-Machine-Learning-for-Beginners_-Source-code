@@ -1,0 +1,37 @@
+pip install pandas
+pip install scikit-learn
+
+
+import pandas as pd
+from sklearn.feature_extraction.text import CountVectorizer
+
+
+# your text data
+
+text = ['This is my bag',
+'I like this movie',
+'She wants to buy my bag']
+
+
+# create a matrix
+
+cv = CountVectorizer()
+
+matrix = cv.fit_transform(text)
+
+matrix
+
+
+# create an array
+
+array = matrix.toarray()
+
+array
+
+
+# create a pandas data frame
+
+df = pd.DataFrame(data = array, columns = cv.get_feature_names_out())
+ 
+print(df)
+
