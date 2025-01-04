@@ -1,0 +1,18 @@
+from sklearn.metrics import confusion_matrix
+cm = confusion_matrix(y_test, y_pred)
+cm
+
+import plotly.express as px
+
+fig = px.imshow(cm, 
+                labels=dict(x="Predicted values", y="Actual values", color="Productivity"),
+                x=['business', 'entertainment', 'politics', 'sport', 'tech'],
+                y=['business', 'entertainment', 'politics', 'sport', 'tech']
+               )
+
+
+fig.update_xaxes(side="bottom")
+
+fig.update_traces(text=cm, texttemplate="%{text}")
+
+fig.show()
