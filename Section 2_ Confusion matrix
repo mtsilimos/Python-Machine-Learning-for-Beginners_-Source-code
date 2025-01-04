@@ -16,3 +16,5 @@ fig.update_xaxes(side="bottom")
 fig.update_traces(text=cm, texttemplate="%{text}")
 
 fig.show()
+
+print("Classification Report:\n", classification_report(y_test, y_pred))
