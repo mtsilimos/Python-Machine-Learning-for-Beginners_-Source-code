@@ -1,0 +1,8 @@
+import pandas as pd 
+import numpy as np  y
+from sklearn.feature_extraction.text import TfidfVectorizer
+
+
+vec = TfidfVectorizer()
+tf_idf = vec.fit_transform(corpus)
+print(pd.DataFrame(tf_idf.toarray(), columns=vec.get_feature_names_out()))
