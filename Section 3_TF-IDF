@@ -1,0 +1,12 @@
+import pandas as pd 
+import numpy as np  
+from sklearn.feature_extraction.text import TfidfVectorizer
+
+corpus = ['The cats eat fish',
+'Leo catches fish every day',
+'Once a day I eat fish'
+]
+
+vec = TfidfVectorizer()
+tf_idf = vec.fit_transform(corpus)
+print(pd.DataFrame(tf_idf.toarray(), columns=vec.get_feature_names_out()))
