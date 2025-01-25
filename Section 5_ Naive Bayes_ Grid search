@@ -1,0 +1,29 @@
+from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.model_selection import train_test_split
+from sklearn.naive_bayes import MultinomialNB
+from sklearn.model_selection import GridSearchCV
+
+
+from google.colab import drive
+drive.mount('/content/drive')
+import pandas as pd
+df = pd.read_csv('/content/drive/My Drive/bbc_data.csv')
+
+X = df['text']
+y = df['class']
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3,
+random_state=42)
+cv = CountVectorizer()# create an instance of the class CountVectorizer
+X_train_vectorized = cv.fit_transform(X_train)
+X_test_vectorized = cv.transform(X_test)
+
+classifier = MultinomialNB()
+classifier.fit(X_train_vectorized, y_train)
+params= {
+ 'alpha': [0.1, 0.5, 1.0, 2.0],
+ 'fit_prior': [True, False]
+}
+grid = GridSearchCV(classifier, params, cv = 5, verbose = 3)
+model = grid.fit(X_train_vectorized, y_train)
+print('Best hyperparameters are '+str(model.best_params_))
+
