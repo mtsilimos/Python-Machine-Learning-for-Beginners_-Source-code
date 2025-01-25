@@ -1,0 +1,3 @@
+cv = CountVectorizer(max_df = 5, min_df = 3, stop_words = 'english')
+
+vec = TfidfVectorizer(max_df = 5, min_df = 3, stop_words = 'english')
