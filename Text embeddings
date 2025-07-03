@@ -1,0 +1,65 @@
+
+
+1. Word2Vec (Using Gensim)
+
+from gensim.models import Word2Vec
+from nltk.tokenize import word_tokenize
+
+# Sample corpus
+documents = ["This is a sentence", "Word embeddings capture meaning", "Text representation is important"]
+
+# Tokenize sentences
+tokenized_docs = [word_tokenize(doc.lower()) for doc in documents]
+
+# Train Word2Vec model
+model = Word2Vec(sentences=tokenized_docs, vector_size=100, window=5, min_count=1, workers=4)
+
+# Get embedding for a word
+word_vector = model.wv['word']
+print(word_vector)
+
+2. FastText (Using Gensim)
+
+from gensim.models import FastText
+
+# Train FastText model
+fasttext_model = FastText(sentences=tokenized_docs, vector_size=100, window=5, min_count=1, workers=4)
+
+# Get embedding for a word
+fasttext_vector = fasttext_model.wv['word']
+print(fasttext_vector)
+
+
+3. GloVe (Using Pretrained Vectors)
+
+import gensim.downloader as api
+
+# Load pretrained GloVe embeddings
+glove_model = api.load("glove-wiki-gigaword-100")
+
+# Get embedding for a word
+glove_vector = glove_model['word']
+print(glove_vector)
+
+4. BERT Embeddings (Using Transformers)
+
+from transformers import BertTokenizer, BertModel
+import torch
+
+# Load pre-trained BERT model
+tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
+model = BertModel.from_pretrained('bert-base-uncased')
+
+# Tokenize and convert to tensor
+text = "Text embeddings are powerful"
+inputs = tokenizer(text, return_tensors='pt')
+outputs = model(**inputs)
+
+# Extract embedding
+bert_embedding = outputs.last_hidden_state.mean(dim=1).detach().numpy()
+print(bert_embedding)
+
+
+REFERENCE
+KoshurAI: The Ultimate Guide to Text Embeddings: Understanding and Generating Them in Python 
+Link:https://medium.com/aimonks/the-ultimate-guide-to-text-embeddings-understanding-and-generating-them-in-python-c30795210238
