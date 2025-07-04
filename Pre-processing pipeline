@@ -6,6 +6,12 @@ import re
 
 df = pd.read_csv(r'C:\Users\mtsil\OneDrive\Documents\/bbc_data.csv')
 
+OR with Google Colab
+
+from google.colab import drive
+drive.mount('/content/drive')
+df = pd.read_csv('/content/drive/My Drive/bbc_data.csv')
+
 pd.set_option('display.max_colwidth', None)
 df.head()
 
