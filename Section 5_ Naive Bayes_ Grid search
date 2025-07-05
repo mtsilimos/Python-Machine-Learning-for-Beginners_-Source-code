@@ -26,4 +26,5 @@ params= {
 grid = GridSearchCV(classifier, params, cv = 5, verbose = 3)
 model = grid.fit(X_train_vectorized, y_train)
 print('Best hyperparameters are '+str(model.best_params_))
+print('Best score is: ' + str(model.best_score_))
 
