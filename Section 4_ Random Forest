@@ -39,5 +39,38 @@ print("Train accuracy:", accuracy_score(y_train, y_pred))
 
 
 
+# 1. Define your new, unseen data
+new_data_texts = [
+    "Apple is set to release a new iPhone model later this year with advanced camera features.",
+    "The central bank announced an interest rate hike, causing market fluctuations.",
+    "A new study reveals a link between climate change and extreme weather events.",
+    "Novak Djokovic won his latest tennis Grand Slam title, showcasing his dominance.",
+    "Hollywood movie revenues soared this quarter, driven by popular superhero films."
+]
+
+
+# 2. Vectorize the new data 
+new_data_vectorized = cv.transform(new_data_texts)
+
+
+# 3. Get predictions from your trained classifier
+predictions_on_new_data = classifier.predict(new_data_vectorized)
+
+print("\nPredictions for new data:")
+for i, text in enumerate(new_data_texts):
+    print(f"Text: '{text}'")
+    print(f"Predicted Category: {predictions_on_new_data[i]}\n")
+
+# If you want to see prediction probabilities (useful for confidence):
+prediction_probabilities = classifier.predict_proba(new_data_vectorized)
+print("\nPrediction Probabilities for new data:")
+for i, text in enumerate(new_data_texts):
+    print(f"Text: '{text}'")
+    # Get the class labels from the classifier (e.g., ['business', 'tech', ...])
+    class_labels = classifier.classes_
+    print("Probabilities:")
+    for j, prob in enumerate(prediction_probabilities[i]):
+        print(f"  {class_labels[j]}: {prob:.4f}")
+    print()
 
 
