@@ -1,1 +1,5 @@
+Hugging Face https://huggingface.co/models
 
+
+Zero-Shot Classification is a method in machine learning that allows a model to correctly classify data (like a text document) 
+into categories it has never been trained on before for that specific task.
