@@ -1,0 +1,40 @@
+new_sentences = [
+    "I need to confirm the policy regarding annual leave requests and vacation time accumulation.",
+    "The new team member requires access privileges to the shared folder on the X drive immediately.",
+    "We need to order five new 27-inch monitors and request licenses for the Adobe Creative Suite.",
+    "The external sales report template requires a database connection string update for Q3 data migration."
+]
+
+
+new_data_vectorized = cv.transform(new_sentences)
+
+
+predictions = classifier.predict(new_data_vectorized)
+probabilities = classifier.predict_proba(new_data_vectorized) # ask the classifier for the probability (confidence score) of each possible class for each document
+
+class_labels = classifier.classes_
+
+
+#for loop 
+# zip() takes three lists(new_sentences, predictions, probabilities)
+
+
+for doc, pred, proba in zip(new_sentences, predictions, probabilities):
+    pred_index = list(class_labels).index(pred)
+    # It starts with the list of the class labels.
+    # It looks for the specific predicted class for the current document.
+    # When it finds it, it returns and stores the position number (index) of that class.
+    # Input: class_labels = ['HR Support', 'Hardware', 'Access', 'Miscellaneous', 'Purchase', 'Storage', 'Internal Project', 'Administrative rights']
+    # Predicted Class (pred): 'Hardware'
+    # Result: Since 'Hardware' is at the second position, the code returns the index 1.
+    # Storage: pred_index is set equal to the number 1.
+
+    max_prob = proba[pred_index]
+    # proba: This is the array containing the probability scores for all possible classes for the current document. The order of these scores exactly matches the order of the class_labels.
+    # This line uses the position number found in the previous step (pred_index) to look up and extract the corresponding confidence score from the array of all probabilities (proba), saving that score as max_prob.
+
+    print(doc)
+    print(pred)
+    print(max_prob)
+    
+    
