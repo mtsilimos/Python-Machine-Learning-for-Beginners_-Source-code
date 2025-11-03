@@ -1,4 +1,4 @@
-#Word2Vec
+#Word2Vec (Learns a vector by predicting a word from its local context.)
 
 !pip install gensim nltk
 
@@ -27,7 +27,7 @@ print(word_vector)
 
 
 
-#FastText
+#FastText (Learns a vector by encoding global word co-occurrence counts (how often words appear together in the whole corpus).)
 
 from gensim.models import FastText
 
@@ -40,7 +40,7 @@ print(fasttext_vector)
 
 
 
-#GloVe
+#GloVe (Learns a vector as the sum of its character n-grams. Captures morphological relations.)
 
 import gensim.downloader as api
 
@@ -53,7 +53,7 @@ print(glove_vector)
 
 
 
-# BERT Embeddings
+# BERT Embeddings (Learns a contextual vector that is unique for every occurrence of a word based on the full sentence surrounding it.)
 
 from transformers import BertTokenizer, BertModel
 import torch
